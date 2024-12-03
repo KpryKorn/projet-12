@@ -63,7 +63,7 @@ npm run start
 
 ## Endpoints
 
-### Endpoints disponibles
+### Endpoints disponibles (userID 12 et 18 uniquement)
 
 - `http://localhost:3000/user/${userId}` - Récupère les informations d'un utilisateur.
 - `http://localhost:3000/user/${userId}/activity` - Récupère l'activité quotidienne d'un utilisateur.
