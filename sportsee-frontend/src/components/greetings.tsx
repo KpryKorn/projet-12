@@ -22,7 +22,7 @@ export default function Greetings({ userId }: { userId: number }) {
   if (!userData) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className="mb-20">
       <h1 className="text-5xl font-medium">
         Bonjour{" "}
         <span className="text-red-500">{userData.userInfos.firstName}</span>
