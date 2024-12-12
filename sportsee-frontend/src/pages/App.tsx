@@ -11,11 +11,11 @@ function App() {
     <>
       <Header />
       <Sidebar />
-      <main className="ml-32 px-28 py-[68px]">
+      <main className="ml-32 px-[107px] py-[68px]">
         <Greetings userId={12} />
 
         <section className="flex gap-[31px]">
-          <div className="w-3/4 flex flex-col gap-7">
+          <div className="flex flex-col justify-between gap-7">
             <DailyActivity text="Activité journalière" />
 
             <div className="flex items-center justify-between">
