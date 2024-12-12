@@ -1,9 +1,9 @@
-import AvgSession from "./components/charts/avg-session";
-import DailyActivity from "./components/charts/daily-activity";
-import TrackerInformations from "./components/charts/tracker-informations";
-import Greetings from "./components/greetings";
-import Header from "./components/header";
-import Sidebar from "./components/sidebar";
+import AvgSession from "../components/charts/avg-session";
+import DailyActivity from "../components/charts/daily-activity";
+import TrackerInformations from "../components/charts/tracker-informations";
+import Greetings from "../components/greetings";
+import Header from "../components/header";
+import Sidebar from "../components/sidebar";
 
 function App() {
   // todo : créer un switch pour le userId et alterner entre les 2 users
