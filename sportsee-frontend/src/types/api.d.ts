@@ -19,6 +19,30 @@ interface UserData {
   keyData: KeyData;
 }
 
-interface Data {
-  data: UserData[];
+interface UserActivity {
+  userId: number;
+  sessions: {
+    day: string;
+    kilogram: number;
+    calories: number;
+  }[];
+}
+
+interface UserPerformance {
+  userId: number;
+  kind: {
+    [key: number]: string;
+  };
+  data: {
+    value: number;
+    kind: number;
+  }[];
+}
+
+interface UserAverageSessions {
+  userId: number;
+  sessions: {
+    day: number;
+    sessionLength: number;
+  }[];
 }
