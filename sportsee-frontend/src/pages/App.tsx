@@ -1,5 +1,6 @@
 import AvgSession from "../components/charts/avg-session";
 import DailyActivity from "../components/charts/daily-activity";
+import SessionScore from "../components/charts/session-score";
 import TrackerInformations from "../components/charts/tracker-informations";
 import Greetings from "../components/greetings";
 import Header from "../components/header";
@@ -16,12 +17,12 @@ function App() {
 
         <section className="flex gap-[31px]">
           <div className="flex flex-col justify-between gap-7">
-            <DailyActivity text="Activité journalière" />
+            <DailyActivity userId={12} />
 
             <div className="flex items-center justify-between">
               <AvgSession text="Durée moyenne des sessions" />
               <AvgSession text="Diagramme araignée" />
-              <AvgSession text="Score %" />
+              <SessionScore userId={12} />
             </div>
           </div>
 
