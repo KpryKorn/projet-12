@@ -8,6 +8,8 @@ import Sidebar from "../components/sidebar";
 
 function App() {
   // todo : créer un switch pour le userId et alterner entre les 2 users
+  // todo : prévoir un switch pour les données mockées vs API
+
   return (
     <>
       <Header />

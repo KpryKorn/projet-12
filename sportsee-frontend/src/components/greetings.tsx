@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchUserMainData } from "../services/api";
+import { userService } from "../services/api";
 
 export default function Greetings({ userId }: { userId: number }) {
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -8,7 +8,7 @@ export default function Greetings({ userId }: { userId: number }) {
   useEffect(() => {
     async function loadData() {
       try {
-        const data = await fetchUserMainData(userId);
+        const data = await userService.getUserMainData(userId);
         setUserData(data);
       } catch (error: any) {
         setError(error.message);
