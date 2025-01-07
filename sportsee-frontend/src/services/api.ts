@@ -1,5 +1,7 @@
 const IS_MOCK = true;
 
+// todo : créer un wrapper qui permet de vérifier si l'API est lancée ou non -> MOCK
+
 export const API_URL = IS_MOCK
   ? "/src/mocks/data.json"
   : "http://localhost:3000";

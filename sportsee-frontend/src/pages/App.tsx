@@ -1,5 +1,6 @@
 import AvgSession from "../components/charts/avg-session";
 import DailyActivity from "../components/charts/daily-activity";
+import RadarGraph from "../components/charts/radar-graph";
 import SessionScore from "../components/charts/session-score";
 import TrackerInformations from "../components/charts/tracker-informations";
 import Greetings from "../components/greetings";
@@ -23,7 +24,7 @@ function App() {
 
             <div className="flex items-center justify-between">
               <AvgSession text="Durée moyenne des sessions" />
-              <AvgSession text="Diagramme araignée" />
+              <RadarGraph userId={12} />
               <SessionScore userId={12} />
             </div>
           </div>
