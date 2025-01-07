@@ -1,10 +1,22 @@
 import { useState, useEffect, useRef } from "react";
-import { Line, LineChart, Tooltip, XAxis } from "recharts";
+import { Line, LineChart, Tooltip, TooltipProps, XAxis } from "recharts";
 import { averageSessionService } from "../../services/api";
 
 const formatDayOfWeek = (day: number): string => {
   const daysOfWeek = ["L", "M", "M", "J", "V", "S", "D"];
   return daysOfWeek[day - 1];
+};
+
+const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white p-2 border border-gray-300 rounded">
+        <p>{`${payload[0].value} min`}</p>
+      </div>
+    );
+  }
+
+  return null;
 };
 
 export default function AvgSession({ userId }: { userId: number }) {
@@ -99,7 +111,7 @@ export default function AvgSession({ userId }: { userId: number }) {
             tick={{ fill: "#FF8181" }}
             padding={{ left: 20, right: 20 }}
           />
-          <Tooltip cursor={false} />
+          <Tooltip cursor={false} content={<CustomTooltip />} />
           <Line
             type="monotone"
             strokeWidth={2}

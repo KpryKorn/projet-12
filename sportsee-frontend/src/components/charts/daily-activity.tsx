@@ -9,7 +9,21 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  TooltipProps,
 } from "recharts";
+
+const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-red-500 text-white p-2 border border-gray-300 rounded">
+        <p>{`${payload[0].value}`}Kg</p>
+        <p>{`${payload[1].value}`}Kcal</p>
+      </div>
+    );
+  }
+
+  return null;
+};
 
 export default function DailyActivity({ userId }: { userId: number }) {
   const [userActivity, setUserActivity] = useState<UserActivity | null>(null);
@@ -64,7 +78,7 @@ export default function DailyActivity({ userId }: { userId: number }) {
             axisLine={false}
             display={"none"}
           />
-          <Tooltip />
+          <Tooltip content={<CustomTooltip />} />
           <Legend
             verticalAlign="top"
             align="right"
