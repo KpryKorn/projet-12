@@ -23,7 +23,7 @@ function App() {
             <DailyActivity userId={12} />
 
             <div className="flex items-center justify-between">
-              <AvgSession text="Durée moyenne des sessions" />
+              <AvgSession userId={12} />
               <RadarGraph userId={12} />
               <SessionScore userId={12} />
             </div>
