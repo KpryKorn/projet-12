@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchUserData } from "../services/api";
+import { userService } from "../services/api";
 
 export default function Greetings({ userId }: { userId: number }) {
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -8,7 +8,7 @@ export default function Greetings({ userId }: { userId: number }) {
   useEffect(() => {
     async function loadData() {
       try {
-        const data = await fetchUserData(userId);
+        const data = await userService.getUserMainData(userId);
         setUserData(data);
       } catch (error: any) {
         setError(error.message);
@@ -22,7 +22,7 @@ export default function Greetings({ userId }: { userId: number }) {
   if (!userData) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className="mb-20">
       <h1 className="text-5xl font-medium">
         Bonjour{" "}
         <span className="text-red-500">{userData.userInfos.firstName}</span>

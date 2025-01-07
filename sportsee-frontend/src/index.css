@@ -7,3 +7,12 @@
 body {
   font-family: "Roboto", sans-serif;
 }
+
+#root {
+  max-width: 1440px;
+  max-height: 1024px;
+}
+
+.sidebar {
+  height: calc(1024px - 109px);
+}
