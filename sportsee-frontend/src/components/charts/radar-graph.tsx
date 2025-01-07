@@ -49,7 +49,7 @@ export default function RadarGraph({ userId }: { userId: number }) {
   if (!userPerformance) return <div>Loading...</div>;
 
   return (
-    <div className="bg-[#282D30] flex items-center justify-center rounded">
+    <article className="bg-[#282D30] flex items-center justify-center rounded">
       <RadarChart
         outerRadius={70}
         width={290}
@@ -60,6 +60,6 @@ export default function RadarGraph({ userId }: { userId: number }) {
         <PolarAngleAxis dataKey="subject" stroke="#FFF" tickLine={false} />
         <Radar dataKey="A" stroke="#FF0101" fill="#FF0101" fillOpacity={0.7} />
       </RadarChart>
-    </div>
+    </article>
   );
 }
