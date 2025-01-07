@@ -1,3 +1,4 @@
+import { useState } from "react";
 import AvgSession from "../components/charts/avg-session";
 import DailyActivity from "../components/charts/daily-activity";
 import RadarGraph from "../components/charts/radar-graph";
@@ -6,8 +7,10 @@ import TrackerInformations from "../components/charts/tracker-informations";
 import Greetings from "../components/greetings";
 import Header from "../components/header";
 import Sidebar from "../components/sidebar";
+import Switch from "../components/switch";
 
 function App() {
+  const [checked, setChecked] = useState(false);
   // todo : créer un switch pour le userId et alterner entre les 2 users
   // todo : prévoir un switch pour les données mockées vs API
 
@@ -16,16 +19,19 @@ function App() {
       <Header />
       <Sidebar />
       <main className="ml-32 px-[107px] py-[68px]">
-        <Greetings userId={12} />
+        <div className="flex items-center justify-between">
+          <Greetings userId={checked ? 18 : 12} />
+          <Switch isOn={checked} handleToggle={() => setChecked(!checked)} />
+        </div>
 
         <section className="flex gap-[31px]">
           <div className="flex flex-col justify-between gap-7">
-            <DailyActivity userId={12} />
+            <DailyActivity userId={checked ? 18 : 12} />
 
             <div className="flex items-center justify-between">
-              <AvgSession userId={12} />
-              <RadarGraph userId={12} />
-              <SessionScore userId={12} />
+              <AvgSession userId={checked ? 18 : 12} />
+              <RadarGraph userId={checked ? 18 : 12} />
+              <SessionScore userId={checked ? 18 : 12} />
             </div>
           </div>
 
