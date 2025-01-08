@@ -21,7 +21,7 @@ export default function SessionScore({ userId }: { userId: number }) {
     loadData();
   }, [userId]);
 
-  const dataScore = userData?.todayScore! * 100;
+  const dataScore = userData?.todayScore! * 100 || userData?.score! * 100;
   const formattedData = [
     { name: "A", value: dataScore },
     { name: "B", value: 100 - dataScore },
