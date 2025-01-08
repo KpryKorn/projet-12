@@ -1,23 +1,29 @@
-const IS_MOCK = true;
-
-// todo : créer un wrapper qui permet de vérifier si l'API est lancée ou non -> MOCK
-
-export const API_URL = IS_MOCK
-  ? "/src/mocks/data.json"
-  : "http://localhost:3000";
-
 class ApiClient {
   private isMock: boolean;
   private apiUrl: string;
 
-  constructor(isMock: boolean, apiUrl: string) {
-    this.isMock = isMock;
+  constructor(apiUrl: string) {
     this.apiUrl = apiUrl;
+    this.isMock = false;
+    this.checkApiAvailability();
+  }
+
+  private async checkApiAvailability() {
+    try {
+      const response = await fetch(this.apiUrl);
+      if (response.ok) {
+        this.isMock = false;
+      } else {
+        this.isMock = true;
+      }
+    } catch (error) {
+      this.isMock = true;
+    }
   }
 
   public async fetchData(endpoint?: string): Promise<any> {
     const url = this.isMock
-      ? this.apiUrl
+      ? "/src/mocks/data.json"
       : `${this.apiUrl}${endpoint ? `/${endpoint}` : ""}`;
     const response = await fetch(url);
     if (!response.ok) {
@@ -25,10 +31,14 @@ class ApiClient {
     }
     return response.json();
   }
+
+  public getIsMock(): boolean {
+    return this.isMock;
+  }
 }
 
 abstract class BaseService<T> {
-  constructor(private client: ApiClient) {}
+  constructor(public client: ApiClient) {}
 
   protected async fetchData(endpoint?: string): Promise<T[]> {
     const jsonData = await this.client.fetchData(endpoint);
@@ -40,7 +50,7 @@ abstract class BaseService<T> {
 
 class UserService extends BaseService<UserData> {
   protected extractData(jsonData: any): UserData[] {
-    return IS_MOCK ? jsonData.USER_MAIN_DATA : jsonData.data;
+    return this.client.getIsMock() ? jsonData.USER_MAIN_DATA : jsonData.data;
   }
 
   async getUserMainData(userId: number): Promise<UserData> {
@@ -53,7 +63,7 @@ class UserService extends BaseService<UserData> {
 
 class ActivityService extends BaseService<UserActivity> {
   protected extractData(jsonData: any): UserActivity[] {
-    return IS_MOCK ? jsonData.USER_ACTIVITY : jsonData.data;
+    return this.client.getIsMock() ? jsonData.USER_ACTIVITY : jsonData.data;
   }
 
   async getUserActivity(userId: number): Promise<UserActivity> {
@@ -66,7 +76,7 @@ class ActivityService extends BaseService<UserActivity> {
 
 class PerformanceService extends BaseService<UserPerformance> {
   protected extractData(jsonData: any): UserPerformance[] {
-    return IS_MOCK ? jsonData.USER_PERFORMANCE : jsonData.data;
+    return this.client.getIsMock() ? jsonData.USER_PERFORMANCE : jsonData.data;
   }
 
   async getUserPerformance(userId: number): Promise<UserPerformance> {
@@ -79,7 +89,9 @@ class PerformanceService extends BaseService<UserPerformance> {
 
 class AverageSessionService extends BaseService<UserAverageSessions> {
   protected extractData(jsonData: any): UserAverageSessions[] {
-    return IS_MOCK ? jsonData.USER_AVERAGE_SESSIONS : jsonData.data;
+    return this.client.getIsMock()
+      ? jsonData.USER_AVERAGE_SESSIONS
+      : jsonData.data;
   }
 
   async getUserAverageSessions(userId: number): Promise<UserAverageSessions> {
@@ -90,7 +102,7 @@ class AverageSessionService extends BaseService<UserAverageSessions> {
   }
 }
 
-const apiClient = new ApiClient(IS_MOCK, API_URL);
+const apiClient = new ApiClient("http://localhost:3000");
 
 export const userService = new UserService(apiClient);
 export const activityService = new ActivityService(apiClient);
