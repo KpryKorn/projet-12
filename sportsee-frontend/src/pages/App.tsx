@@ -11,8 +11,6 @@ import Switch from "../components/switch";
 
 function App() {
   const [checked, setChecked] = useState(false);
-  // todo : créer un switch pour le userId et alterner entre les 2 users
-  // todo : prévoir un switch pour les données mockées vs API
 
   return (
     <>
@@ -36,10 +34,7 @@ function App() {
           </div>
 
           <div className="w-1/4 flex flex-col gap-[39px]">
-            <TrackerInformations text="Calories" />
-            <TrackerInformations text="Proteines" />
-            <TrackerInformations text="Glucides" />
-            <TrackerInformations text="Lipides" />
+            <TrackerInformations userId={checked ? 18 : 12} />
           </div>
         </section>
       </main>
