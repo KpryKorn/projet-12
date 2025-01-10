@@ -32,6 +32,7 @@ export default function RadarGraph({ userId }: { userId: number }) {
       try {
         const data = await performanceService.getUserPerformance(userId);
         setUserPerformance(data);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         setError(error.message);
       }

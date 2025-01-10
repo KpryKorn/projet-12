@@ -15,6 +15,7 @@ export default function TrackerInformations({ userId }: { userId: number }) {
       try {
         const data = await userService.getUserMainData(userId);
         setUserData(data);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         setError(error.message);
       }

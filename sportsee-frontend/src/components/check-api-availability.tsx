@@ -10,6 +10,7 @@ export default function CheckApiAvailability() {
         if (response.status !== 200) {
           setIsApiAvailable(false);
         }
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         setIsApiAvailable(false);
       }

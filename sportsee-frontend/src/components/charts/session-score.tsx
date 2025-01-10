@@ -13,6 +13,7 @@ export default function SessionScore({ userId }: { userId: number }) {
       try {
         const data = await userService.getUserMainData(userId);
         setUserData(data);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         setError(error.message);
       }
@@ -21,6 +22,7 @@ export default function SessionScore({ userId }: { userId: number }) {
     loadData();
   }, [userId]);
 
+  // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
   const dataScore = userData?.todayScore! * 100 || userData?.score! * 100;
   const formattedData = [
     { name: "A", value: dataScore },

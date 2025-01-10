@@ -6,6 +6,7 @@ const DataCard = ({
 }: {
   label: string;
   value: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icone: any;
   bgColor: string;
 }) => (

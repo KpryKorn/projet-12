@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 class ApiClient {
   private isMock: boolean;
   private apiUrl: string;
@@ -57,6 +59,7 @@ class UserService extends BaseService<UserData> {
     const data = await this.fetchData(`user/${userId}`);
     if (this.client.getIsMock()) {
       const user = data.find((u) => u.id === userId);
+      if (!user) throw new Error("User not found");
       return user;
     }
 
@@ -74,6 +77,7 @@ class ActivityService extends BaseService<UserActivity> {
     const data = await this.fetchData(`user/${userId}/activity`);
     if (this.client.getIsMock()) {
       const activity = data.find((a) => a.userId === userId);
+      if (!activity) throw new Error("User not found");
       return activity;
     }
 
@@ -91,6 +95,7 @@ class PerformanceService extends BaseService<UserPerformance> {
     const data = await this.fetchData(`user/${userId}/performance`);
     if (this.client.getIsMock()) {
       const performance = data.find((p) => p.userId === userId);
+      if (!performance) throw new Error("User not found");
       return performance;
     }
 
@@ -110,6 +115,7 @@ class AverageSessionService extends BaseService<UserAverageSessions> {
     const data = await this.fetchData(`user/${userId}/average-sessions`);
     if (this.client.getIsMock()) {
       const sessions = data.find((s) => s.userId === userId);
+      if (!sessions) throw new Error("User not found");
       return sessions;
     }
 

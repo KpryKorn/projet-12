@@ -34,6 +34,7 @@ export default function DailyActivity({ userId }: { userId: number }) {
       try {
         const data = await activityService.getUserActivity(userId);
         setUserActivity(data);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         setError(error.message);
       }

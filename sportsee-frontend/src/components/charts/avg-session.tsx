@@ -71,6 +71,7 @@ export default function AvgSession({ userId }: { userId: number }) {
       try {
         const data = await averageSessionService.getUserAverageSessions(userId);
         setUserAvgSessions(data);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         setError(error.message);
       }
