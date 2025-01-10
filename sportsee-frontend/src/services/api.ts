@@ -54,10 +54,14 @@ class UserService extends BaseService<UserData> {
   }
 
   async getUserMainData(userId: number): Promise<UserData> {
-    const data = await this.fetchData();
-    const user = data.find((u) => u.id === userId);
-    if (!user) throw new Error("User not found");
-    return user;
+    const data = await this.fetchData(`user/${userId}`);
+    if (this.client.getIsMock()) {
+      const user = data.find((u) => u.id === userId);
+      return user;
+    }
+
+    if (!data) throw new Error("User not found");
+    return data;
   }
 }
 
@@ -67,10 +71,14 @@ class ActivityService extends BaseService<UserActivity> {
   }
 
   async getUserActivity(userId: number): Promise<UserActivity> {
-    const data = await this.fetchData();
-    const activity = data.find((a) => a.userId === userId);
-    if (!activity) throw new Error("Activity not found");
-    return activity;
+    const data = await this.fetchData(`user/${userId}/activity`);
+    if (this.client.getIsMock()) {
+      const activity = data.find((a) => a.userId === userId);
+      return activity;
+    }
+
+    if (!data) throw new Error("Activity not found");
+    return data;
   }
 }
 
@@ -80,10 +88,14 @@ class PerformanceService extends BaseService<UserPerformance> {
   }
 
   async getUserPerformance(userId: number): Promise<UserPerformance> {
-    const data = await this.fetchData();
-    const performance = data.find((p) => p.userId === userId);
-    if (!performance) throw new Error("Performance not found");
-    return performance;
+    const data = await this.fetchData(`user/${userId}/performance`);
+    if (this.client.getIsMock()) {
+      const performance = data.find((p) => p.userId === userId);
+      return performance;
+    }
+
+    if (!data) throw new Error("Performance not found");
+    return data;
   }
 }
 
@@ -95,10 +107,14 @@ class AverageSessionService extends BaseService<UserAverageSessions> {
   }
 
   async getUserAverageSessions(userId: number): Promise<UserAverageSessions> {
-    const data = await this.fetchData();
-    const sessions = data.find((s) => s.userId === userId);
-    if (!sessions) throw new Error("Average sessions not found");
-    return sessions;
+    const data = await this.fetchData(`user/${userId}/average-sessions`);
+    if (this.client.getIsMock()) {
+      const sessions = data.find((s) => s.userId === userId);
+      return sessions;
+    }
+
+    if (!data) throw new Error("Average sessions not found");
+    return data;
   }
 }
 

@@ -8,6 +8,7 @@ import Greetings from "../components/greetings";
 import Header from "../components/header";
 import Sidebar from "../components/sidebar";
 import Switch from "../components/switch";
+import CheckApiAvailability from "../components/check-api-availability";
 
 function App() {
   const [checked, setChecked] = useState(false);
@@ -21,6 +22,7 @@ function App() {
           <Greetings userId={checked ? 18 : 12} />
           <Switch isOn={checked} handleToggle={() => setChecked(!checked)} />
         </div>
+        <CheckApiAvailability />
 
         <section className="flex gap-[31px]">
           <div className="flex flex-col justify-between gap-7">
