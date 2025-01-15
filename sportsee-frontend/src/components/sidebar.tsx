@@ -6,7 +6,7 @@ import swimIcon from "../assets/swim.svg";
 
 export default function Sidebar() {
   return (
-    <aside className="fixed bg-noir-sportsee w-[117px] sidebar px-8 flex flex-col items-center justify-center">
+    <aside className="fixed bg-noir-sportsee w-16 xl:w-[117px] sidebar px-8 flex flex-col items-center justify-center">
       <div className="flex flex-col space-y-4 -mt-8">
         <IconeSidebar icone={meditateIcon} />
         <IconeSidebar icone={swimIcon} />
