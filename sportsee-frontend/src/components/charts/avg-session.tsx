@@ -1,5 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { Line, LineChart, Tooltip, TooltipProps, XAxis } from "recharts";
+import {
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  TooltipProps,
+  XAxis,
+} from "recharts";
 import { averageSessionService } from "../../services/api";
 
 const formatDayOfWeek = (day: number): string => {
@@ -85,7 +92,7 @@ export default function AvgSession({ userId }: { userId: number }) {
 
   return (
     <div className="avg">
-      <article className="aspect-square w-64 h-64 bg-[#FF0000] flex flex-col items-center justify-center rounded-lg relative">
+      <article className="aspect-square w-48 h-48 xl:w-64 xl:h-64 bg-[#FF0000] flex flex-col items-center justify-center rounded-lg relative">
         <h2 className="absolute top-4 left-4 text-white/50">
           Durée moyenne des sessions
         </h2>
@@ -93,41 +100,41 @@ export default function AvgSession({ userId }: { userId: number }) {
           className="absolute top-0 right-0 h-full bg-[rgba(1,1,1,0.0975)]"
           ref={rectangleRef}
         ></div>
-        <LineChart
-          width={260}
-          height={260}
-          data={userAvgSessions.sessions}
-          margin={{
-            top: 60,
-            right: 0,
-            left: 0,
-            bottom: 10,
-          }}
-        >
-          <XAxis
-            dataKey="day"
-            tickFormatter={formatDayOfWeek}
-            axisLine={false}
-            tickLine={false}
-            tick={{ fill: "#FF8181" }}
-            padding={{ left: 20, right: 20 }}
-          />
-          <Tooltip cursor={false} content={<CustomTooltip />} />
-          <Line
-            type="monotone"
-            strokeWidth={2}
-            dataKey="sessionLength"
-            stroke="white"
-            activeDot={{
-              stroke: "white",
-              strokeWidth: 10,
-              r: 4,
-              fill: "white",
-              strokeOpacity: 0.3,
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            data={userAvgSessions.sessions}
+            margin={{
+              top: 60,
+              right: 0,
+              left: 0,
+              bottom: 10,
             }}
-            dot={{ r: 0 }}
-          />
-        </LineChart>
+          >
+            <XAxis
+              dataKey="day"
+              tickFormatter={formatDayOfWeek}
+              axisLine={false}
+              tickLine={false}
+              tick={{ fill: "#FF8181" }}
+              padding={{ left: 20, right: 20 }}
+            />
+            <Tooltip cursor={false} content={<CustomTooltip />} />
+            <Line
+              type="monotone"
+              strokeWidth={2}
+              dataKey="sessionLength"
+              stroke="white"
+              activeDot={{
+                stroke: "white",
+                strokeWidth: 10,
+                r: 4,
+                fill: "white",
+                strokeOpacity: 0.3,
+              }}
+              dot={{ r: 0 }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
       </article>
     </div>
   );

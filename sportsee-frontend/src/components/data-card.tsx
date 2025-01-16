@@ -10,7 +10,7 @@ const DataCard = ({
   icone: any;
   bgColor: string;
 }) => (
-  <article className="min-w-[258px] h-[124px] bg-gray-100 flex items-center justify-center rounded-lg gap-6">
+  <article className="xl:min-w-[258px] h-[90px] xl:h-[124px] bg-gray-100 flex items-center justify-center rounded-lg gap-6">
     <div
       className={`w-14 h-14 rounded-lg ${bgColor} inline-flex items-center justify-center`}
     >
