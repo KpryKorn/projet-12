@@ -47,7 +47,7 @@ export default function DailyActivity({ userId }: { userId: number }) {
   if (!userActivity) return <div>Loading...</div>;
 
   return (
-    <article className="min-w-[835px] w-full h-[320px] bg-gray-100 flex flex-col items-center justify-center p-4">
+    <article className="max-w-[600px] xl:min-w-[835px] w-full h-[250px] xl:h-[320px] bg-gray-100 flex flex-col items-center justify-center p-4">
       <h2 className="self-start ml-10">Activité quotidienne</h2>
       <ResponsiveContainer width="100%" height="80%">
         <BarChart

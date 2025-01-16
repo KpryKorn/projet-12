@@ -17,7 +17,7 @@ function App() {
     <>
       <Header />
       <Sidebar />
-      <main className="ml-32 px-[107px] py-[68px]">
+      <main className="xl:ml-32 ml-16 px-[77px] py-[38px] xl:px-[107px] xl:py-[68px]">
         <div className="flex items-center justify-between">
           <Greetings userId={checked ? 18 : 12} />
           <Switch isOn={checked} handleToggle={() => setChecked(!checked)} />
@@ -28,7 +28,7 @@ function App() {
           <div className="flex flex-col justify-between gap-7">
             <DailyActivity userId={checked ? 18 : 12} />
 
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-3">
               <AvgSession userId={checked ? 18 : 12} />
               <RadarGraph userId={checked ? 18 : 12} />
               <SessionScore userId={checked ? 18 : 12} />

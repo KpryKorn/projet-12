@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { RadarChart, PolarGrid, PolarAngleAxis, Radar } from "recharts";
+import {
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  Radar,
+  ResponsiveContainer,
+} from "recharts";
 import { performanceService } from "../../services/api";
 
 interface TranslationDict {
@@ -50,17 +56,23 @@ export default function RadarGraph({ userId }: { userId: number }) {
   if (!userPerformance) return <div>Loading...</div>;
 
   return (
-    <article className="bg-[#282D30] flex items-center justify-center rounded">
-      <RadarChart
-        outerRadius={70}
-        width={290}
-        height={256}
-        data={formattedData}
-      >
-        <PolarGrid stroke="#fff" />
-        <PolarAngleAxis dataKey="subject" stroke="#FFF" tickLine={false} />
-        <Radar dataKey="A" stroke="#FF0101" fill="#FF0101" fillOpacity={0.7} />
-      </RadarChart>
+    <article className="bg-[#282D30] w-48 h-48 xl:w-64 xl:h-64 flex items-center justify-center rounded">
+      <ResponsiveContainer width="100%" height="100%">
+        <RadarChart
+          outerRadius={50}
+          data={formattedData}
+          style={{ fontSize: "10px" }}
+        >
+          <PolarGrid stroke="#fff" />
+          <PolarAngleAxis dataKey="subject" stroke="#FFF" tickLine={false} />
+          <Radar
+            dataKey="A"
+            stroke="#FF0101"
+            fill="#FF0101"
+            fillOpacity={0.7}
+          />
+        </RadarChart>
+      </ResponsiveContainer>
     </article>
   );
 }
